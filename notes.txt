@@ -1,0 +1,1 @@
+operator precedence: double > float > long long int > long int > int > char
