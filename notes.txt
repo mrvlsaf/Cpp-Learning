@@ -1,1 +1,11 @@
-operator precedence: double > float > long long int > long int > int > char
+Just some fundamentals.
+
+* Operator precedence: double > float > long long int > long int > int > char
+
+* If declarig array locally (i.e. inside main() function), it can hold upto order of 10^5. If globally, it can hold upto order of 10^7.
+
+* ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+    including this line of code just after in the main function will exponentially increases your execution time but at a cost.
+
+* just use powl instead of pow when dealing with numbers in order of 10^17, (literally waste my 1 hour on this error handling).
