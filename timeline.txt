@@ -1,0 +1,2 @@
+25th july,2021 - Started C++ basics for compititive programming.
+31st August,2021 - Started solving questions.
