@@ -28,7 +28,7 @@ string infixToPostfix(string exp)
                 stak.push(exp[i]);
             else
             {
-                while (higherPrecedence(exp[i], stak.top()) == false || stak.empty() == false)
+                while (higherPrecedence(exp[i], stak.top()) || stak.empty() == false)
                 {
                     ans.push_back(stak.top());
                     stak.pop();
