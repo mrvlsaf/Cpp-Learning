@@ -8,6 +8,22 @@ struct Node
     Node *right;
 };
 
+int minElement(Node *root)
+{
+    if (root->left == NULL)
+        return root->val;
+    else
+        return minElement(root->left);
+}
+
+int maxElement(Node *root)
+{
+    if (root->right == NULL)
+        return root->val;
+    else
+        return maxElement(root->right);
+}
+
 bool search(Node *root, int x)
 {
     if (root == NULL)
@@ -51,9 +67,13 @@ int main()
     Node *root = NULL;
     root = insert(root, 10);
     root = insert(root, 20);
-    root = insert(root, 5);
+    root = insert(root, 1);
+    root = insert(root, 2000);
+    root = insert(root, 4);
     cout << "Enter value to search\n";
     int value;
     cin >> value;
     search(root, value) ? cout << "Value Found" : cout << "Value Not Found";
+    cout << minElement(root);
+    cout << maxElement(root);
 }
