@@ -59,6 +59,7 @@ int main()
     root = insert(root, 50);
     root = insert(root, 25);
     root = insert(root, 75);
+    root = insert(root, 20);
     root = insert(root, 200);
     root = insert(root, 250);
     root = insert(root, 150);
