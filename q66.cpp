@@ -52,6 +52,18 @@ Node *findMax(Node *root)
     root->right = findMax(root->right);
 }
 
+Node *findMin(Node *root)
+{
+    // if (root->left == NULL)
+    //     return root;
+    // root->left = findMin(root->left);
+    if (root == NULL)
+        return NULL;
+    while (root->left != NULL)
+        root = root->left;
+    return root;
+}
+
 Node *deleteNode(Node *root, int value)
 {
     if (root == NULL)
@@ -92,6 +104,43 @@ Node *deleteNode(Node *root, int value)
     return root;
 }
 
+Node *findNode(Node *root, int val)
+{
+    if (root == NULL)
+        return NULL;
+    else if (val == root->val)
+        return root;
+    else if (val < root->val)
+        return findNode(root->left, val);
+    else
+        return findNode(root->right, val);
+}
+
+Node *inOrderSuccessor(Node *root, int val)
+{
+    Node *current = findNode(root, val);
+    if (current == NULL)
+        return NULL;
+    else if (current->right != NULL)
+        return findMin(current->right);
+    else
+    {
+        Node *successor = NULL;
+        Node *ancestor = root;
+        while (ancestor != current)
+        {
+            if (current->val < ancestor->val)
+            {
+                successor = ancestor;
+                ancestor = ancestor->left;
+            }
+            else
+                ancestor = ancestor->right;
+        }
+        return successor;
+    }
+}
+
 int main()
 {
     Node *root = NULL;
@@ -104,11 +153,14 @@ int main()
     root = insert(root, 400);
     root = insert(root, 600);
     root = insert(root, 550);
+    // inOrder(root);
+    // root = deleteNode(root, 100); // node with one child
+    // inOrder(root);
+    // root = deleteNode(root, 550); // node with no child
+    // inOrder(root);
+    // root = deleteNode(root, 400); // node with two children
     inOrder(root);
-    root = deleteNode(root, 100); // node with one child
-    inOrder(root);
-    root = deleteNode(root, 550); // node with no child
-    inOrder(root);
-    root = deleteNode(root, 400); // node with two children
-    inOrder(root);
+    Node *ans = inOrderSuccessor(root, 400);
+    cout << "\n"
+         << ans->val;
 }
