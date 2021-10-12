@@ -42,11 +42,14 @@ void inOrder(Node *root)
     inOrder(root->right);
 }
 
-Node *findMin(Node *root)
+Node *findMax(Node *root)
 {
-    while (root->left != NULL)
-        root = root->left;
-    return root;
+    // while (root->right != NULL)
+    //     root = root->right;
+    // return root;
+    if (root->right == NULL)
+        return root;
+    root->right = findMax(root->right);
 }
 
 Node *deleteNode(Node *root, int value)
@@ -81,7 +84,7 @@ Node *deleteNode(Node *root, int value)
         // Two Children
         else
         {
-            Node *temp = findMin(root->right);
+            Node *temp = findMax(root->left);
             root->val = temp->val;
             root->right = deleteNode(root->right, temp->val);
         }
