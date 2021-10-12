@@ -44,19 +44,15 @@ void inOrder(Node *root)
 
 Node *findMax(Node *root)
 {
-    // while (root->right != NULL)
-    //     root = root->right;
-    // return root;
-    if (root->right == NULL)
-        return root;
-    root->right = findMax(root->right);
+    if (root == NULL)
+        return NULL;
+    while (root->right != NULL)
+        root = root->right;
+    return root;
 }
 
 Node *findMin(Node *root)
 {
-    // if (root->left == NULL)
-    //     return root;
-    // root->left = findMin(root->left);
     if (root == NULL)
         return NULL;
     while (root->left != NULL)
@@ -141,6 +137,31 @@ Node *inOrderSuccessor(Node *root, int val)
     }
 }
 
+Node *inOrderPredecessor(Node *root, int val)
+{
+    Node *current = findNode(root, val);
+    if (current == NULL)
+        return NULL;
+    else if (current->left != NULL)
+        return findMax(current->left);
+    else
+    {
+        Node *predecessor = NULL;
+        Node *ancestor = root;
+        while (ancestor != current)
+        {
+            if (current->val > ancestor->val)
+            {
+                predecessor = ancestor;
+                ancestor = ancestor->right;
+            }
+            else
+                ancestor = ancestor->left;
+        }
+        return predecessor;
+    }
+}
+
 int main()
 {
     Node *root = NULL;
@@ -160,7 +181,10 @@ int main()
     // inOrder(root);
     // root = deleteNode(root, 400); // node with two children
     inOrder(root);
-    Node *ans = inOrderSuccessor(root, 400);
+    Node *successor = inOrderSuccessor(root, 450);
     cout << "\n"
-         << ans->val;
+         << successor->val;
+    Node *predecessor = inOrderPredecessor(root, 450);
+    cout << "\n"
+         << predecessor->val;
 }
