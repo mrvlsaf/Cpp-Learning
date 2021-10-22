@@ -9,7 +9,7 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    isPrime[0] == isPrime[1] == false;
+    // isPrime[0] == isPrime[1] == false;
     for (int i = 2; i < N; ++i)
     {
         if (isPrime[i])
@@ -18,7 +18,7 @@ int main()
                 isPrime[j] = false;
         }
     }
-    for (int i = 2; i < 20; ++i)
+    for (int i = 10; i < 20; ++i)
     {
         if (isPrime[i])
             cout << i << "\n";
